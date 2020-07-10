@@ -1,0 +1,414 @@
+.user-404{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 100vh;
+
+	font-family: 'Baloo 2', cursive;
+	margin: 0;
+}
+
+.profile-page{
+	font-family: 'Baloo 2', cursive;
+
+	margin-top: 70px;
+}
+
+.profile-banner{
+	width: 100%;
+	max-height: 400px;
+
+	overflow: hidden;
+}
+
+.profile-banner .blank-banner{
+	height: 400px;
+	background: #f9f9f9;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-banner img{
+	width: 105%;
+	height: 105%;
+	margin-left: -5%;
+
+	transition: all 0.5s;
+}
+
+.profile-banner img:hover{
+	transform: scale(1.1);
+	margin-left: 0%;
+}
+
+.profile-page .profile{
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 50px;
+
+	margin-top: -110px;
+
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: auto minmax(200px, auto);
+	grid-gap: 20px 10px;
+
+	padding-bottom: 20px;
+	border-bottom: 1px solid rgb(122, 86, 232);
+}
+
+.profile .profile-image{
+	z-index: 1;
+
+	width: 200px;
+	height: 200px;
+
+	overflow: hidden;
+	background: none;
+
+	border-radius: 50%;
+
+	object-fit: cover;
+
+	border: 5px solid #f1f1f1;
+
+	box-shadow: 1px 1px 10px  rgba(122, 86, 232, 0.2);
+	background: #f1f1f1;
+}
+
+.profile .profile-name{
+	margin-top: 150px;
+
+	background: #fff;
+
+	border-radius: 10px;
+
+	display: flex;
+	align-items: center;
+}
+
+.profile h1{
+	margin: 0  50px 0 50px;
+	font-size: 32px;
+}
+
+.profile-state{
+	max-width: 200px;
+}
+
+.profile-state .profile-like-dislike{
+	display: flex;
+	justify-content: space-around;
+}
+
+/*.profile-state .profile-like-dislike.disabled img{
+	cursor: none;
+}*/
+
+.profile-state .profile-like-dislike div{
+	display: flex;
+	align-items: center;
+
+	font-size: 18px;
+
+	cursor: pointer;
+
+	margin-top: 10px;
+}
+
+.profile-state .profile-since{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 16px;
+
+	color: #8f8f8f;
+}
+
+.profile .profile-info{
+	font-size: 22px;
+}
+
+.profile .profile-interactions{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	cursor: default;
+}
+
+.profile .profile-interactions p{
+	font-size: 20px;
+	text-align: center;
+
+	color: #8f8f8f;
+}
+
+.profile-page .email{
+	grid-column: 1/4;
+	text-align: center;
+
+	color: #9f9f9f;
+}
+
+.profile-page .buttons{
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
+
+	margin: 0 auto;
+}
+
+.profile-page .buttons button{
+	width: 100px;
+	background: rgba(122, 86, 232, 0.8);
+
+	color: #fff;
+
+	border: none;
+	border-radius: 0 0 0px 5px;
+}
+
+.profile-page .buttons button:nth-child(2){
+	border-radius: 0 0 5px 0px;	
+}
+
+.profile-page .buttons button.selected{
+	background: rgba(122, 86, 232, 1);
+}
+
+.platforms{
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 50px 50px;
+	grid-gap: 5px  5px;
+
+	max-width: 540px;
+
+	margin: 0 auto;
+}
+
+.platforms .platform-container div{
+	display: flex;
+	flex-direction: row;
+}
+
+.platforms .platform-container .platform{
+	background: #f8f8f8;
+	color: #4f4f4f;
+	border: none;
+	border-radius: 5px 0 0 5px;
+
+	width: 100%;
+	max-width: 215px;
+
+	padding: 3px 0 0 5px;
+
+	height: 30px;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	font-weight: 600;
+}
+
+.platforms .platform-container .platform:hover{
+	cursor: default;
+}
+
+.profile-page .copy{
+	height: 30px;
+	width: 50px;
+
+	border-radius: 0 5px 5px 0;
+
+	display: flex;
+	justify-content: center;
+
+	color: #fff;
+	background: rgba(122, 86, 232, 1);
+
+	cursor: pointer;
+
+	background-image: url(./assets/copy.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 14px;
+}
+
+.profile-page .gamelist-title{
+	text-align: center;
+	margin: 25px 0 20px 0;
+
+	font-size: 32px;
+}
+
+.profile-page .gamelist{
+	width: 100%;
+	max-width: 1200px;
+
+	margin: 0 auto 48px auto;
+	padding: 0 20px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 5px;
+}
+
+.gamelist .game-item{
+	max-width: 150px;
+	margin: 0 auto;
+
+	cursor: pointer;
+}
+
+.game-item img{
+	width: 150px;
+	height: 100px;
+
+	object-fit: cover;
+
+	border-radius: 3px;
+}
+
+.game-item img:hover{
+	box-shadow: 1px 1px 5px rgb(122, 86, 232);
+}
+
+.game-item a:focus img{
+	box-shadow: 1px 1px 5px rgb(122, 86, 232);
+}
+
+.gamelist .game-item h2{
+	font-size: 16px;
+
+	padding-top: 5px;
+
+	text-align: center;
+}
+
+.game-item.game-number{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 150px;
+	height: 100px;
+
+	background: url('./assets/border.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.game-item.game-number h2{
+	font-size: 20px;
+	color: rgb(122, 86, 232);
+
+	font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 970px){
+	.profile-page .gamelist{
+		
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-rows: auto auto;
+	}
+}
+
+
+@media (max-width: 650px){
+	.profile-page .gamelist{
+		
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto auto;
+	}
+}
+
+@media (max-width: 720px){
+	.profile-page .profile{
+		
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto auto auto;
+	}
+
+	.profile-page .profile-image{
+		grid-column: 1/3;
+		grid-row: 1/1;
+
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.profile-page .profile-name{
+		grid-column: 1/3;
+		grid-row: 2/2;
+
+		margin-top: 0;
+
+		justify-content: center;
+	}
+
+	.profile h1{
+		margin: 0  0 0 0;
+		font-size: 32px;
+
+		text-align: center;
+	}
+
+	.profile-page .profile-state{
+		grid-column: 1/1;
+		grid-row: 3/3;
+
+		justify-content: center;
+	}
+
+	.profile-page .profile-interactions{
+		grid-column: 2/2;
+		grid-row: 3/3;
+
+		justify-content: center;
+	}
+
+	.profile-page .profile-state{
+		justify-content: space-between;
+	}
+
+	.profile-page .profile-info{
+		grid-column: 1/3;
+		grid-row: 4/4;
+	}
+
+	.profile-page .gamelist{
+		padding: 0 5px;
+	}
+
+	.profile-page .platforms{
+		grid-column: 1/3;
+		grid-row: 4/4;
+	}
+}
+
+@media (max-width: 500px){	
+	.profile-page .gamelist{
+		
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto auto auto;
+
+		padding: 0 5px;
+	}
+
+	.gamelist .game-item{
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 480px){
+	.platforms{
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}
+}

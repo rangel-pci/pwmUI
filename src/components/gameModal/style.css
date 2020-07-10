@@ -1,0 +1,68 @@
+#game-modal{
+	position: fixed;
+	top: 100px;
+	left: 50%;
+	transform: translate(-50%);
+
+	background: #fff;
+
+	width: 270px;
+
+	border-radius: 10px 10px 10px 10px;
+
+	box-shadow: 0 0 10px grey;
+	z-index: 10;
+}
+
+#game-modal .game-image{
+	width: 270px;
+	height: 200px;
+
+	object-fit: cover;
+
+	border-radius: 10px 10px 0 0;
+}
+
+#game-modal p{
+	text-align: center;
+	margin: 5px 5px;
+}
+
+#game-modal div{
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 0;
+}
+
+#game-modal div button{
+	width: 100px;
+
+	padding: 5px 20px;
+
+	color: #4c4c4c;
+
+	background: none;
+	border: none;
+	border-radius: 10px 10px 10px 10px;
+}
+
+#game-modal div button:nth-child(2){
+	background: #f1f1f1;
+
+	color: #000;
+
+	transition: all 0.25s;
+}
+
+#game-modal div button:nth-child(2):active{
+	font-size: 10px;
+}
+
+#game-modal button img{
+	width: 20px;
+	height: inherit;
+
+	border-radius: 0;
+
+	object-fit: cover;
+}

@@ -1,0 +1,65 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+body{
+  font-family: 'Baloo 2', Helvetica, sans-serif;
+  color: #4f4f4f;
+  font-size: 1em;
+  background: #f1f1f1;
+}
+.fadeInComponent{
+	animation: fadeInComponent 0.25s linear;
+}
+@keyframes fadeInComponent{
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+.toLeftSlideComponent{
+  animation: toLeftSlideComponent 0.5s linear;
+}
+@keyframes toLeftSlideComponent{
+  0% { position: fixed; top: 0; right: calc(-100vw); }
+  100% { position: fixed; top: 0; right: 0; }
+}
+.d-block{
+  display: block;
+}
+.d-flex{
+  display: flex;
+}
+.d-none{
+  display: none;
+}
+.d-grid{
+  display: grid;
+}
+
+/* Scrollbar style */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-top-right-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4c4c4c; 
+}
+
+::-webkit-scrollbar-thumb:active {
+ background: #1c1c1c;  
+}

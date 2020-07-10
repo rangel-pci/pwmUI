@@ -1,0 +1,83 @@
+.card-notification{
+	z-index: 10;
+
+	position: fixed;
+	top: 75px;
+	right: 20px;
+	border-radius: 5px;
+	padding: 10px;
+	box-shadow: 8px 8px 10px #ddd;
+
+	cursor: pointer;
+}
+.card-notification::before{
+	content: "";
+
+	width: 40px;
+	height: 5px;
+
+	background: #fff;
+
+	z-index: 1;
+
+	position: absolute;
+	top: 40%;
+	right: 10px;
+
+	transition: 0.5s all;
+
+	opacity: 0;
+
+	border-radius: 10px;
+}
+
+.card-notification::after{
+	content: "";
+
+	width: 40px;
+	height: 5px;
+
+	background: #fff;
+
+	z-index: 1;
+
+	position: absolute;
+	top: 40%;
+	right: 10px;
+
+	transition: 0.5s all;
+
+	opacity: 0;
+
+	border-radius: 10px;
+}
+
+.card-notification:hover::before{
+	opacity: 1;
+	transform: rotate(45deg);
+}
+
+.card-notification:hover::after{
+	opacity: 1;
+	transform: rotate(-45deg);
+}
+
+.card-notification p {
+	margin: 0;
+	width: 280px;
+}
+
+.message{
+	background: #f1f1f1;
+	color: #4f4f4f;
+}
+
+.error{
+	background: #FF7676;
+	color: #fff;
+}
+
+.success{
+	background: #7a56e8;
+	color: #fff;
+}

@@ -1,0 +1,60 @@
+#gamelist-modal{
+	position: fixed;
+	top: 80px;
+	left: 50%;
+
+	transform: translate(-50%);
+
+	width: 90%;
+	max-height: 70vh;
+
+	overflow-y: scroll;
+
+	background: #fff;
+
+	padding: 10px;
+
+	border-radius: 10px;
+
+	z-index: 1;
+
+	
+
+	box-shadow: 2px 2px 10px #9f9f9f;
+}
+
+#gamelist-modal .header{
+	display: flex;
+	justify-content: space-between;
+
+	padding: 10px 10px;
+}
+
+#gamelist-modal .header img{
+	cursor: pointer;
+}
+
+#gamelist-modal .header span{
+	color: #7a56e8;
+}
+
+#gamelist-modal .gamelist-container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-template-rows: auto;
+	grid-gap: 20px 5px;
+}
+
+#gamelist-modal .game-item{
+	width: 150px;
+
+	margin: 0 auto;
+
+	cursor: pointer;
+
+	text-align: center;
+}
+
+#gamelist-modal .game-item h6{
+	padding-top: 5px;
+}

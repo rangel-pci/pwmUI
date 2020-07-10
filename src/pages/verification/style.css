@@ -1,0 +1,104 @@
+.verification-page{
+	font-family: 'Baloo 2', cursive;
+	background: rgba(122, 86, 232, 0.7);
+
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.verification-page .verify-card-container{
+	width: 25rem;
+
+	margin: 0 10px;
+
+	text-align: center;
+	box-shadow: -2px 2px 10px rgba(122, 86, 232, 1);
+
+	position: relative;
+}
+
+.verification-page .verify-card-container::before{
+	content:" ";
+	width: 50px;
+	height: 15px;
+
+	background: #fff;
+
+	position: absolute;
+	top: 0;
+	left: -25px;
+
+	border-radius: 10px;
+}
+
+.verification-page .verify-card-container::after{
+	content:" ";
+	width: 25px;
+	height: 15px;
+
+	background: #fff;
+
+	position: absolute;
+	top: 20px;
+	left: -10px;
+
+	border-radius: 10px;
+}
+
+.verification-page .verify-card-body{
+	background: #fff;
+	border-radius: 5px 5px 0 0;
+	padding: 20px 25px;
+}
+
+.verification-page .verify-re-send{
+	margin-top: 20px;
+	background: #fff;
+	border-radius: 0 0 5px 5px;
+}
+
+.verification-page .verify-re-send-input{
+	background: #f1f1f1;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+	margin: 10px 5px;
+}
+
+.verification-page .verify-re-send-input:focus{
+	border-color: rgba(122, 86, 232, 1);
+}
+
+.verification-page .verify-re-send-button{
+	color: #fff;
+	border: 2px solid #fff;
+	padding: 5px 10px;
+	background: rgba(122, 86, 232, 1);
+	border-radius: 2px;
+}
+
+.verification-page .verify-card-title{
+	font-size: 1.7em;
+}
+
+.verification-page .verify-card-text{
+	color: #8f8f8f;
+}
+
+.verification-page .verify-re-send-link{
+}
+
+/* Responsive */
+@media (max-width: 480px){
+	.verification-page .verify-card-container::before{
+		left: -7px;
+	}
+
+	.verification-page .verify-card-container::after{
+		left: -3px;
+	}
+}
