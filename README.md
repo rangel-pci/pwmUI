@@ -9,9 +9,10 @@ You can create a list of games and interact with other users on this or other pl
 
 <h2 id="implementedTechnologies">Implemented Technologies</h2>
 
+- <a href="https://reactjs.org/">React JS</a>
+- <a href="https://reactrouter.com/">React Router</a>
 - <a href="https://github.com/axios/axios">Axios</a>
 - <a href="https://github.com/auth0/node-jsonwebtoken">JsonWebToken</a>
-- <a href="https://reactrouter.com/">React Router</a>
 - <a href="https://www.npmjs.com/package/query-string">Query-String</a>
 
 <h2 id="HowToRun">How to Run</h2>
