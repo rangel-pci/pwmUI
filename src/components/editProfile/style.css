@@ -14,6 +14,9 @@
 .wrap{
 	min-height: 370px;
 	min-width: 200px;
+
+	max-height: 80vh;
+	overflow: auto;
 }
 .wrap h2{
 	text-align: center;
@@ -83,7 +86,7 @@
 }
 
 #edit-profile form input.ok, #edit-profile form textarea.ok{
-	border-color: #81FF76;
+	border-color: #eee;
 }
 
 #edit-profile form input.not-ok, #edit-profile form textarea.not-ok{

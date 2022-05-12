@@ -31,9 +31,11 @@ export default class Header extends Component {
 
 		api.post(`/gamelist/${game.id}`)
 		.then((res) => {
-			
 			this.setState({ loading: false });
+			
 			this.props.unmountMe('success');
+			this.props.addedGame(game);
+			
 		})
 		.catch((err) => {
 	

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'http://localhost/backend/api/v1',
+	baseURL: 'http://pwm.rangelpereira.com',
 });
 
 export default api;

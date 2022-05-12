@@ -122,6 +122,11 @@ nav .search-results .result-item:hover{
 	background: #f1f1f1;
 }
 
+nav .search-results .result-item.blank:hover{
+	background: #fff;
+	cursor: default;
+}
+
 nav .search-results .result-item img{
 	width: 75px;
 	height: 75px;
@@ -243,6 +248,7 @@ nav .nav-profile{
 
 .responsive-home img{
 	margin: 10px;
+	margin-bottom: 1px;
 	border: 2px solid rgb(122, 86, 232);
 	border-radius: 10px;
 
@@ -325,3 +331,4 @@ nav .nav-profile{
 		width: 270px;
 	}
 }
+

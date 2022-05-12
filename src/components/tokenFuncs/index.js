@@ -21,9 +21,20 @@ const token = {
 	},
 	getTokenDecoded(){
 		const app_token = localStorage.getItem('app-token');
+		if(app_token){
+			const token = jwt.decode(app_token);
+			return token;
+		}
+		return false;
+	},
+	removeToken(){
+		localStorage.removeItem('app-token');
+	},
+	isExpired(){
+		const app_token = localStorage.getItem('app-token');
 		const token = jwt.decode(app_token);
 
-		return token;
+		return new Date(Date.now()) > new Date(token.exp*1000)? true : false;
 	}
 }
 

@@ -28,6 +28,8 @@ export default class Profile extends Component {
 				platformsButton: ''
 			},
 
+			loggedUserId: '',
+
 			loading: true,
 			notify: '',
 			gameModal: false,
@@ -35,6 +37,7 @@ export default class Profile extends Component {
 
 			gameList: false,
 			renderGame: [],
+			banner: null,
 		}
 		this.headerSubNav = React.createRef();
 	}
@@ -63,9 +66,9 @@ export default class Profile extends Component {
 
 		api.get(`/user/${userId}`)
 		.then((res) => {
-			console.log('res', res.data);
+			// console.log('res', res.data);
 			const data = res.data.response;
-			console.log('data', data);
+			// console.log('data', data);
 
 			if(data.likes === undefined){
 				const obj = {likes: {quantity: 0}};
@@ -77,8 +80,6 @@ export default class Profile extends Component {
 			}
 			//seta likes ou dislikes para 0 caso a API não tenha retornado algum
 
-			this.setState({ user: data });
-
 			//caso tenha game list preenche renderGame
 			if(data.game_list){
 				var renderGame = [];
@@ -86,10 +87,13 @@ export default class Profile extends Component {
 					return renderGame.push(game.id);
 				});
 
-				this.setState({ renderGame: renderGame, loading: false });
+				this.setState({ renderGame: renderGame, loading: false, banner: data.game_list[0] });
 			}else{
+				data.game_list = [];
 				this.setState({ loading: false });
 			}
+
+			this.setState({ user: data });
 		})
 		.catch((error) => {
 			console.log(error);
@@ -249,9 +253,10 @@ export default class Profile extends Component {
 
 	handleGameModalUnmount = (errorSuccess, id = false) => {
 		if(id){
-			var { renderGame } = this.state;
+			var { renderGame, user } = this.state;
 
 			var _index;
+			var banner = false;
 
 			renderGame.forEach((gameId, index) => {
 				if(gameId === id){
@@ -260,7 +265,17 @@ export default class Profile extends Component {
 			});
 
 			renderGame.splice(_index, 1);
-			this.setState({ renderGame: renderGame });
+			
+			console.log('index ',_index);
+			user.game_list.splice(_index, 1);			
+
+			user.game_list.forEach((obj, index) => {
+				if(obj.id === renderGame[0]){
+					banner = obj;
+				}
+			})
+			
+			this.setState({ renderGame, user, banner });
 		}
 
 		this.setState({ gameModal: false });
@@ -288,13 +303,30 @@ export default class Profile extends Component {
 		this.setState({ gameList: false });	
 	}
 
+	updateGameList = (game) => {
+		const { loggedUserId, user } = this.state;
+
+		if(loggedUserId !== user.id){
+			return false;
+		}
+
+		user.game_list.unshift(game);
+		
+		let renderGame = [];
+		user.game_list.map((game, index) => {
+			return renderGame.push(game.id);
+		});
+
+		this.setState({ renderGame, user, banner: game });
+	}
+
 	render(){
 
-		const { loggedUserId, user, displayInfo, loading, notify, gameModal, gameList, renderGame } = this.state;
+		const { loggedUserId, user, displayInfo, loading, notify, gameModal, gameList, renderGame, banner } = this.state;
 
 		return(
 			<div id="profile-page-container">
-				<Header ref={this.headerSubNav} updateProfile={this.setProfile} />
+				<Header ref={this.headerSubNav} updateProfile={this.setProfile} updateGameList={this.updateGameList} />
 
 				<div onClick={() => this.headerSubNav.current.hideSubNav()}>
 					{loading === false && user !== undefined &&
@@ -302,11 +334,11 @@ export default class Profile extends Component {
 					<main className="profile-page fadeInComponent">
 						
 						<div className="profile-banner">
-							{ user && user.game_list
-								? <img src={user.game_list[0].image} alt={user.game_list[0].name} />
+							{ (user && banner)
+								? <img src={banner.image} alt={banner.name} />
 								: user && user.id === loggedUserId
 								? <div className="blank-banner">
-									Você terá um background qunado adicionar um jogo a sua lista de jogos...
+									Você terá um background quando adicionar um jogo a sua lista de jogos...
 								  </div>
 								: <div className="blank-banner">
 									Este usuário ainda não possui uma lista de jogos...

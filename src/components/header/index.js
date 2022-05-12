@@ -5,7 +5,7 @@ import token from '../../components/tokenFuncs';
 import CardNotification from '../../components/cardNotification';
 import Loading from '../../components/loading';
 import Game from '../../components/gameModal';
-import EditProfile from '../editProfile'
+import EditProfile from '../editProfile';
 
 import logo from './assets/logo.svg';
 import logo_responsive from './assets/logo-responsive.svg';
@@ -29,6 +29,7 @@ export default class Header extends Component {
 			searchResults: [],
 			searchResultsLoading: false,
 			search: '',
+			mk_search_req: false,
 			waitRequest: false,
 
 			game: false,
@@ -42,8 +43,9 @@ export default class Header extends Component {
 
 	setHeaderInfo = () => {
 		const user = token.getTokenDecoded();
-
-		this.setState({ user });
+		const searchType = localStorage.getItem('search-type-user-'+user.id);
+		
+		this.setState({ user, searchType:(searchType !== 'user' && searchType !== 'game')? 'user': searchType });
 	}
 
 	logOut = () => {
@@ -69,7 +71,6 @@ export default class Header extends Component {
 			this.setState({ searchResults: undefined, searchResultsLoading: false });
 		});
 	}
-
 
 	render(){
 		const {
@@ -98,6 +99,7 @@ export default class Header extends Component {
 
 						{searchResults !== undefined && searchResults !== '' &&
 							<div className="search-results">
+								
 								{
 									searchResults.map((data, index) => {
 										if(this.state.searchType === 'user'){
@@ -123,6 +125,15 @@ export default class Header extends Component {
 								}
 							</div>
 						}
+
+						{searchResults === undefined && search !== '' && !searchResultsLoading &&
+							<div className="search-results">
+								<div className="result-item blank">
+									<p>Sem Resultados...</p>
+								</div>
+							</div>
+						}
+
 					</div>					
 
 					<div className="nav-profile">
@@ -161,7 +172,7 @@ export default class Header extends Component {
 				}
 
 				{game &&
-					<Game game={this.state.game} unmountMe={this.handleGameModalUnmount} from={'search'} />
+					<Game game={this.state.game} unmountMe={this.handleGameModalUnmount} addedGame={this.handleAddedGame} from={'search'} />
 				}
 			</header>
 		)
@@ -175,7 +186,7 @@ export default class Header extends Component {
 		this.setState({ game: false });
 
 		if (errorSuccess === 'success') {
-			this.setState({ notify: 
+				this.setState({ notify: 
 				{type: 'success', text: 'Jogo adicionado a sua lista.', className: 'd-block'}
 			});
 		}else if(errorSuccess === 'fail'){
@@ -189,24 +200,42 @@ export default class Header extends Component {
 		}
 	}
 
-	handleSearchTypeChange = (e) => {
-		const type = e.target.value;
+	handleAddedGame = (game) => {
+		if(typeof this.props.updateGameList !== 'undefined'){
+			this.props.updateGameList(game);
+		}
+	}
 
-		this.setState({ searchType: type });
+	handleSearchTypeChange = (e) => {
+		const { user } = this.state;
+		localStorage.setItem('search-type-user-'+user.id, e.target.value);
+		const searchType = e.target.value;
+		
+		this.setState({ searchType });
 	}
 
 	handleSearchChange = (e) => {
 		const name = e.target.value;
-		this.setState({ search: name, searchResultsLoading: true});
+		if(!this.state.searchResultsLoading){
+			this.setState({ search: name, searchResults: undefined, searchResultsLoading: true });	
+		}
+		this.setState({ search: name });
 
 		if(name === ''){
 			this.setState({ searchResults: undefined, searchResultsLoading: false });
 			return false;
 		}
-
 		const { searchType } = this.state;
+		
+		// realiza a request
+		clearTimeout(this.state.mk_search_req);
+		// console.log('will make the req');
+		this.setState({ mk_search_req: setTimeout(() => {
+			// console.log('calling api');
+			this.getSearchResult(searchType, name);
+		}, 500) });
 
-		this.getSearchResult(searchType, name);
+		// this.getSearchResult(searchType, name);
 	}
 
 	editProfile = () => {
@@ -222,8 +251,11 @@ export default class Header extends Component {
 
 		if (errorSuccess === 'success') {
 			token.update(this.setHeaderInfo);
-			this.props.updateProfile();
-
+		
+			if(typeof this.props.updateProfile !== 'undefined'){
+				this.props.updateProfile();
+			}
+			
 			this.setState({ notify: 
 				{type: 'success', text: 'Perfil alterado com sucesso.', className: 'd-block'}
 			});

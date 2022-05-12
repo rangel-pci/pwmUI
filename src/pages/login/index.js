@@ -97,7 +97,8 @@ export default class Login extends Component {
 							<button className="login-button" onClick={this.logIn}>Entrar</button>
 							<div className="validation">{authValidation}</div>
 							<br />
-							<Link className="recover-link" to={'/'} >Esqueceu Sua Senha?</Link>
+							{/* <Link className="recover-link" to={'/'} >Esqueceu Sua Senha?</Link> */}
+							<Link className="recover-link" to={'/register'}>Cadastre-se</Link>
 						</div>
 					</div>
 					{loading &&

@@ -5,6 +5,7 @@
 pwmUI is a user interface made with react JS, which consumes the api of a project made a while ago, and which is available <a href="https://github.com/rangel-pci/pwmAPI">here</a>.
 You can create a list of games and interact with other users on this or other platforms.
 
+- Check out the application in action at <a href="http://pwm.rangelpereira.com/">pwm.rangelpereira.com</a>
 <h6 align="center"><kbd><img src="https://github.com/rangel-pci/files/blob/master/pwmDemo.gif" /></kbd></h6>
 
 <h2 id="implementedTechnologies">Implemented Technologies</h2>
@@ -37,13 +38,8 @@ $ npm start
 #Go to http://localhost:3000
 ```
 
-<h2 id="HowToContribute">How to Contribute</h2>
+Maybe you want to change api url in ```pwmUI/src/services/api.js```
 
-- Fork the repository
-- Create a branch with your feature: <code>git checkout -b my-feature</code>
-- Commit your changes: <code>git commit -m 'feat: My new feature'</code>
-- Push your branch: <code>git push origin my-feature</code>
 
-<h2>License</h2>
-
-This project is under the MIT license, more information at <a href="https://github.com/rangel-pci/pwmUI/blob/master/LICENSE">LICENSE</a>.
+<h2 id="License">License</h2>
+This project was created entirely by me and you can use it however you want!.

@@ -7,7 +7,8 @@ import Register from './pages/register';
 import Verification from './pages/verification';
 import Login from './pages/login';
 import Profile from './pages/profile';
-import Main from './pages/main';
+
+import Main from './pages/main2';
 import NotFound from './pages/notFound';
 
 const Routes = () => {

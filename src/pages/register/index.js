@@ -82,13 +82,15 @@ export default class Register extends Component {
 		api.post('/user', data)
 		.then((res) => {
 			
-			this.setState({ loading: false });
+			this.setState({ fade:'fade-out', loading: false });
 			this.props.history.push('/register/verification');
 		})
 		.catch((error) => {
 			error.response === undefined ? this.registerFailure(): this.registerFieldsFailure(error.response.data.response);
-			this.setState({ loading: false });
-			this.setState({ step3: 'current', disablePreviousButton: false, disableNextButton: false })
+
+			// this.setState({ step3: 'current', disablePreviousButton: false, disableNextButton: false })
+			
+			this.setState({ step1: 'current', step2: null, step3: null, fade:'fade-out', loading:false, disableNextButton: false });
 		});
 
 
@@ -171,17 +173,16 @@ export default class Register extends Component {
 		}else if(errors.step2 && step1 === 'checked' && step2 !== 'checked'){
 			this.setState({ fade: 'fade-in' });
 			setTimeout(() => {
-				this.setState({ step2: 'checked', step3: 'current', fade: 'fade-out', errors});
+				this.setState({ step2: 'checked', step3: 'current', fade: 'fade-out'});
 			}, 500);
 
 		}else if(errors.step1 && errors.step2 && step3 !== 'checked'){
-			this.setState({ fade: 'fade-in' });
-			setTimeout(() => {
-				this.setState({ step3: 'checked', fade: 'fade-out', disablePreviousButton: true, disableNextButton: true, loading: true });
-			}, 500);
-			/*aqui os 3 steps estão ok, então chama base64encode que codifica a img e manda para regiter()
+			this.setState({ step3: 'checked', fade: 'fade-in', loading: true, disablePreviousButton: true, disableNextButton: true });
+			
+			/*aqui os 3 steps estão ok, então chama base64encode que codifica a img e manda para register()
 			junto com o resto dos dados que estão prontos para irem pro BD*/
 			this.base64encode();
+			
 
 		}else if(!errors.step1){
 			this.setState({ step1: 'fail' });
@@ -464,21 +465,21 @@ export default class Register extends Component {
 				</div>
 						
 				<form className="register-form">
-					<label htmlFor="email">E-mail (*)</label>
+					<label htmlFor="email">E-mail *</label>
 					<input id="email" value={email} className="input-field" onChange={this.handleEmailChange} onBlur={this.handleEmailBlur} type="text" placeholder="Meu_email@exemplo.com" />
 					<span className="input-error">{errors.email && errors.Email}</span>
-					<label htmlFor="login">Login (*)</label>
+					<label htmlFor="login">Login *</label>
 					<input id="login" value={login} className="input-field" onChange={this.handleLoginChange} onBlur={this.handleLoginBlur} type="text" placeholder="Login" />
 					<span className="input-error">{errors.login && errors.Login}</span>
 
 					<div className="form-group">
 						<div>
-							<label htmlFor="password">Senha (*)</label>
+							<label htmlFor="password">Senha *</label>
 							<input id="password" value={password} className="input-field" onChange={this.handlePasswordChange} onBlur={this.handlePasswordBlur} type="password" placeholder="Senha" />
 							<span className="input-error">{errors.password && errors.Password}</span>
 						</div>
 						<div>
-							<label htmlFor="confirm-password">Confirmar Senha (*)</label>
+							<label htmlFor="confirm-password">Confirmar Senha *</label>
 							<input id="confirm-password" value={confPassword} className="input-field" onChange={this.handleConfPasswordChange} onBlur={this.handleConfPasswordBlur} type="password" placeholder="Confirme a Sua Senha" />
 							<span className="input-error">{errors.confPassword && errors.ConfPassword}</span>
 						</div>
@@ -507,19 +508,19 @@ export default class Register extends Component {
 					</div>
 					
 					<label htmlFor="image" className="input-field form-control input-file">
-						Escolher Imagem de Perfil (*)
+						Escolher Imagem de Perfil *
 						<input id="image" value={''} className="select-file" onChange={this.handleFileChange} type="file" accept="image/jpg,image/png,image/jpeg" required="" />
 					</label>
 					<span className="input-error">{errors.file && errors.File}</span>
 
 					<div className="form-group">
 						<div>
-							<label htmlFor="name">Nome (*)</label>
+							<label htmlFor="name">Nome *</label>
 							<input id="name" value={name} className="input-field form-control" onChange={this.handleNameChange} onBlur={this.handleNameBlur} type="text" placeholder="Nome/NickName" />
 							<span className="input-error">{errors.name && errors.Name}</span>
 						</div>
 						<div>
-							<label htmlFor="age">Idade (*)</label>
+							<label htmlFor="age">Idade *</label>
 							<input id="age" value={age} className="input-field form-control" onChange={this.handleAgeChange} onBlur={this.handleAgeBlur} type="text" placeholder="Sua Idade" />
 							<span className="input-error">{errors.age && errors.Age}</span>
 						</div>
