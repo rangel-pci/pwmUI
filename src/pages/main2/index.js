@@ -43,11 +43,15 @@ export default class Main extends Component {
 		this.getContent();
 	}
 
+	componentWillUnmount(){
+		clearInterval(this.interval);
+	}
+
 	getContent = () => {
 		this.getUsers();
 		this.getGames();
 
-		setInterval(() => {
+		this.interval = setInterval(() => {
 			this.getGames();
 		}, 10000);
 	}

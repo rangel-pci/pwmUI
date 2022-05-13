@@ -96,12 +96,12 @@ export default class Verification extends Component {
 					<div className="verify-card-body">
 						<h1 className="verify-card-title">Dê uma olhada em seu email</h1>
 					    <p className="verify-card-text">
-					    	Um link de verificação foi enviado ao seu email, clique nele para ativar a sua conta.
+					    	Um link de verificação foi enviado ao seu email (esse processo pode levar alguns minutos), clique nele para ativar a sua conta.
 					    </p>
 					</div>
 					<form className="verify-re-send" onSubmit={ (e) => { e.preventDefault() } }>
 						<input className="verify-re-send-input" type="text" placeholder="Email" />
-						<button className="verify-re-send-button" onClick={ this.resend }>Reenviar link</button>
+						<button className="verify-re-send-button" onClick={ this.resend } style={{ opacity: '0.5' }}>Reenviar link</button>
 					</form>
 				</div>
 
